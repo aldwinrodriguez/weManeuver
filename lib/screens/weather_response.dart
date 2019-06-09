@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 //import 'package:we_maneuver/custom_widgets/custom_card.dart';
 //import 'package:we_maneuver/utilities/network_helper.dart';
 
@@ -22,27 +24,39 @@ class WeatherResponse extends StatefulWidget {
 }
 
 class _WeatherResponseState extends State<WeatherResponse> {
+  _launchURL() async {
+    const url =
+        'https://www.youtube.com/watch?v=TYCBicKyVhs&list=PLUag27pXbdWgvLAPzKGlHsRkv-Fx5qcvi&index=4';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 //  @override
 //  void initState() {
 //    // TODO: implement initState
 //    super.initState();
-//    print(widget.weatherData);
 //  }
+
+  Responsive responsive = Responsive();
 
   @override
   Widget build(BuildContext context) {
     var r = widget.weatherData;
+    String sample = r['avgWeatherAndDesc'][0];
+    print('this is $sample');
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: background,
+          decoration: responsive.getBackground(sample),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
                 flex: 22,
                 child: MainCard(
-                  decoration: shadow,
+                  decoration: responsive.getShadow(colors[sample]),
                   icon: Image.asset("images/${r['avgWeatherAndDesc'][0]}.gif"),
                   mainDesc: Text(r['mainDesc']),
                   stat: Text('Mostly ${r['avgTemp']}\u00b0 if you go now'),
@@ -51,7 +65,7 @@ class _WeatherResponseState extends State<WeatherResponse> {
               Expanded(
                 flex: 16,
                 child: FromToCard(
-                  decoration: shadow,
+                  decoration: responsive.getShadow(colors[sample]),
                   icon: Image.asset("images/${r['iconFrom']}.gif"),
                   where: Text(r['cityFrom'], style: textSample),
                   mainTemp: Text('${r['tempFrom']}\u00b0', style: textSample),
@@ -69,7 +83,7 @@ class _WeatherResponseState extends State<WeatherResponse> {
                   itemCount: 9,
                   itemBuilder: (context, int index) {
                     return MultipleMiniCard(
-                      decoration: shadow,
+                      decoration: responsive.getShadow(colors[sample]),
                       icon: Image.asset(
                           "images/${r['list'][index]['weather'][0]['icon']}.gif"),
                       where: Text(r['list'][index]['name'], style: textSample),
@@ -91,7 +105,7 @@ class _WeatherResponseState extends State<WeatherResponse> {
               Expanded(
                 flex: 16,
                 child: FromToCard(
-                  decoration: shadow,
+                  decoration: responsive.getShadow(colors[sample]),
                   icon: Image.asset("images/${r['iconTo']}.gif"),
                   where: Text(r['cityTo'], style: textSample),
                   mainTemp: Text('${r['tempTo']}\u00b0', style: textSample),
@@ -103,29 +117,23 @@ class _WeatherResponseState extends State<WeatherResponse> {
               ),
               Expanded(
                 flex: 3,
-                child: Container(
+                child: FlatButton(
+//                  color: Color(0x96db1a00),
+                  color: Colors.black,
+                  onPressed: _launchURL,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Expanded(
-                        child: FlatButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text('return')),
+                      Text(
+                        'Drive now and Play some music on youtube ? ',
+                        style: TextStyle(color: Colors.white),
                       ),
-                      Expanded(
-                        child: Container(
-                          child: null,
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          child: null,
-                        ),
-                      ),
+                      Icon(
+                        Icons.play_circle_filled,
+                        color: Colors.red,
+                      )
                     ],
                   ),
-                  color: Colors.grey,
                 ),
               )
             ],
