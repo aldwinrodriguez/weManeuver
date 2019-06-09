@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:we_maneuver/utilities/constants.dart';
-
 class FromToCard extends StatelessWidget {
-  final icon, where, mainTemp, mainDesc, subDesc, highTemp, lowTemp;
+  final icon, where, mainTemp, mainDesc, subDesc, highTemp, lowTemp, decoration;
 
   FromToCard(
       {this.icon,
@@ -12,7 +10,8 @@ class FromToCard extends StatelessWidget {
       this.mainDesc,
       this.subDesc,
       this.highTemp,
-      this.lowTemp});
+      this.lowTemp,
+      this.decoration});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class FromToCard extends StatelessWidget {
       padding: const EdgeInsets.only(
           left: 125.0, right: 125.0, top: 6.0, bottom: 6.0),
       child: Container(
-        decoration: shadow,
+        decoration: decoration,
         child: Column(
           children: <Widget>[
             Expanded(

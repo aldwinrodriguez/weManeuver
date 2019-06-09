@@ -11,3 +11,8 @@ Decoration shadow = BoxDecoration(
   ],
   borderRadius: BorderRadius.circular(6.0),
 );
+
+Decoration background = BoxDecoration(
+  image: DecorationImage(
+      image: AssetImage('images/background/sunny.jpg'), fit: BoxFit.cover),
+);

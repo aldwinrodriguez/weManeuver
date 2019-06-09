@@ -8,6 +8,8 @@ import 'package:we_maneuver/custom_widgets/main_card.dart';
 import 'package:we_maneuver/custom_widgets/from_card.dart';
 import 'package:we_maneuver/custom_widgets/multiple_mini_card.dart';
 
+import 'package:we_maneuver/utilities/constants.dart';
+
 const TextStyle textSample = TextStyle(fontSize: 10.0);
 
 class WeatherResponse extends StatefulWidget {
@@ -33,17 +35,14 @@ class _WeatherResponseState extends State<WeatherResponse> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('images/background/sunny.jpg'),
-            ),
-          ),
+          decoration: background,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
                 flex: 22,
                 child: MainCard(
+                  decoration: shadow,
                   icon: Image.asset("images/${r['avgWeatherAndDesc'][0]}.gif"),
                   mainDesc: Text(r['mainDesc']),
                   stat: Text('Mostly ${r['avgTemp']}\u00b0 if you go now'),
@@ -52,6 +51,7 @@ class _WeatherResponseState extends State<WeatherResponse> {
               Expanded(
                 flex: 16,
                 child: FromToCard(
+                  decoration: shadow,
                   icon: Image.asset("images/${r['iconFrom']}.gif"),
                   where: Text(r['cityFrom'], style: textSample),
                   mainTemp: Text('${r['tempFrom']}\u00b0', style: textSample),
@@ -69,6 +69,7 @@ class _WeatherResponseState extends State<WeatherResponse> {
                   itemCount: 9,
                   itemBuilder: (context, int index) {
                     return MultipleMiniCard(
+                      decoration: shadow,
                       icon: Image.asset(
                           "images/${r['list'][index]['weather'][0]['icon']}.gif"),
                       where: Text(r['list'][index]['name'], style: textSample),
@@ -90,6 +91,7 @@ class _WeatherResponseState extends State<WeatherResponse> {
               Expanded(
                 flex: 16,
                 child: FromToCard(
+                  decoration: shadow,
                   icon: Image.asset("images/${r['iconTo']}.gif"),
                   where: Text(r['cityTo'], style: textSample),
                   mainTemp: Text('${r['tempTo']}\u00b0', style: textSample),

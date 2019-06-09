@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:we_maneuver/utilities/constants.dart'
-    '';
-
 class MainCard extends StatelessWidget {
-  final icon, mainDesc, stat;
+  final icon, mainDesc, stat, decoration;
 
-  MainCard({this.icon, this.mainDesc, this.stat});
+  MainCard({this.icon, this.mainDesc, this.stat, this.decoration});
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
         child: Container(
-          decoration: shadow,
+          decoration: decoration,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

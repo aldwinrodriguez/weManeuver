@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:we_maneuver/utilities/constants.dart';
-
 class MultipleMiniCard extends StatelessWidget {
-  final icon, where, mainTemp, mainDesc, highTemp, lowTemp;
+  final icon, where, mainTemp, mainDesc, highTemp, lowTemp, decoration;
 
   MultipleMiniCard(
       {this.icon,
@@ -11,12 +9,13 @@ class MultipleMiniCard extends StatelessWidget {
       this.mainTemp,
       this.mainDesc,
       this.highTemp,
-      this.lowTemp});
+      this.lowTemp,
+      this.decoration});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: shadow,
+      decoration: decoration,
       width: 80.0,
 //      color: Colors.green,
       margin: EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
