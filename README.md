@@ -1,4 +1,8 @@
-# we_maneuver
+# we_maneuver  
+
+## Summary: Similar to my weDrive app, but built for Android and iOS.
+
+## Mission: I wanted get on mobile development and test my Dart skills. 
 
 A new Flutter application.
 
